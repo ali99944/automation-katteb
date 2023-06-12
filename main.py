@@ -216,7 +216,7 @@ def main():
 
     headlines_file = os.path.join(application_path,"headlines.txt")
     with open(headlines_file,mode='r',encoding='utf-8',errors='ignore') as file:
-            for line in file.readlines:
+            for line in file.readlines():
                 make_article(line)
 
     driver.quit()
