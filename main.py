@@ -100,6 +100,13 @@ def main():
     )
 
     driver.switch_to.window(main_window_handle)
+    
+    def make_article_with_error_handling(x_line):
+        try:
+            make_article(x_line)
+        except Exception as e:
+            print(f'error occurred {e}')
+            make_article_with_error_handling(x_line)
 
     def make_article(headline):
         driver.switch_to.window(main_window_handle)
@@ -217,7 +224,8 @@ def main():
     headlines_file = os.path.join(application_path,"headlines.txt")
     with open(headlines_file,mode='r',encoding='utf-8',errors='ignore') as file:
             for line in file.readlines():
-                make_article(line)
+                make_article_with_error_handling(line)
+                
 
     driver.quit()
 
